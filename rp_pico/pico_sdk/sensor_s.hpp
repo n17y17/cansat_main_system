@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 
+#include "exception_handring_s.hpp"
 #include "communication_method_s.hpp"
 
 const double kDefaultErrorSensorValue = -1024.0;  // 測定しなかった，できなかった時のセンサの値
@@ -78,12 +79,13 @@ struct Measurement
 これは抽象クラスです
 センサに関するクラスの継承元クラスとして利用します
 ここで "= 0" と定義されている関数を継承先のクラスでオーバーライド(再定義して上書き)しないとコンパイルエラーになります
+
+継承
+Exception-->Sensor
 */
 class Sensor
 {
-    virtual bool AllowExecution() {
-        
-    }
+    Measurement measure() = 0;
 };
 
 #endif  // CANSAT_MAIN_SYSTEM_RP_PICO_PICO_SDK_SENSOR_S_HPP_

@@ -1,7 +1,9 @@
 #ifndef CANSAT_MAIN_SYSTEM_RP_PICO_PICO_SDK_SENSOR_PROCESSING_S_HPP_
 #define CANSAT_MAIN_SYSTEM_RP_PICO_PICO_SDK_SENSOR_PROCESSING_S_HPP_
 
-class SensorProcessing
+#include "exception_handring_s.hpp"
+
+class SensorProcessing : public Exception
 {
 
 };
