@@ -12,7 +12,7 @@ namespace sc
         // 接続を確認
         if (!check_connection()) 
         {
-            throw Error(__FILE__, __LINE__, "BME280 could not be set up correctly");  // BME280を正常にセットアップできませんでした
+            Error(__FILE__, __LINE__, "BME280 could not be set up correctly");  // BME280を正常にセットアップできませんでした
         }
 
         // 測定方法などの設定
