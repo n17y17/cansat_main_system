@@ -40,6 +40,8 @@ namespace sc
         std::snprintf(&buf[0], len + 1, fmt.c_str(), args ... );  // フォーマットを実行
         save_log(buf);  // ログを記録
     }
+    // この関数は以下の資料を参考にて作成しました
+    // https://pyopyopyo.hatenablog.com/entry/2019/02/08/102456
 
     // エラーを記録し，標準エラー出力に出力します
     class Error : public std::exception
