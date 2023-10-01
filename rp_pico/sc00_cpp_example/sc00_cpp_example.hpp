@@ -7,7 +7,7 @@
 #include "bme280.hpp"
 
 sc::I2C i2c(0, sc::Pin(1), sc::Pin(2), 9600);  // I2Cのオブジェクト
-sc::BME280 bme;  // BME280のオブジェクト  _i2cと順番を入れ替えると動かないので注意!
+sc::BME280 bme;  // BME280のオブジェクト
 
 sc::Temperature temperature;  // 測定した気温
 sc::Pressure pressure;  // 測定した気圧
