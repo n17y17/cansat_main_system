@@ -243,7 +243,7 @@ namespace sc
     inline bool is_error(Measurement value) {return is_error({value});}
 
     // 複数回 関数を実行して戻り値の平均を計算
-    // func : 引数を持たない関数オブジェクト (戻り値の型は足し算と割り算ができる必要がある．void型だとエラー)
+    // func : 引数を持たない関数オブジェクト (戻り値の型はdouble型との足し算と割り算ができる必要がある．void型だとエラー)
     // count : 繰り返す回数
     // メンバ関数などの平均を求める際はfuncの部分を次のようにしてください
     // [&オブジェクト名]{return オブジェクト名.メンバ関数名();}
