@@ -26,7 +26,7 @@ void loop()
         measure();
 
         // 測定結果を記録
-        save_log("temperature:%f`C, pressure:%fhPa, humidity:%f%, altitude:%fm\n", temperature, pressure, humidity, altitude);
+        sc::save_log("temperature:%f`C, pressure:%fhPa, humidity:%f%, altitude:%fm\n", temperature, pressure, humidity, altitude);
 
         // 1s待機
         sleep_ms(1000);
