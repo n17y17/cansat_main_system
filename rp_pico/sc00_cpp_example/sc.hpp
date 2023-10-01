@@ -499,10 +499,10 @@ namespace sc
     public:
         // I2Cのセットアップ  I2C0とI2C1を使う際にそれぞれ一回だけ呼び出す
         // i2c_id : I2C0かi2c1か
-        // scl_pin : I2CのSCLのピン (ピン番号のみ指定したもの)
         // sda_pin : I2CのSDAのピン (ピン番号のみ指定したもの)
+        // scl_pin : I2CのSCLのピン (ピン番号のみ指定したもの)
         // freq : I2Cの転送速度
-        I2C(bool i2c_id, Pin scl_pin, Pin sda_pin, const uint32_t& freq);
+        I2C(bool i2c_id, Pin sda_pin, Pin scl_pin, const uint32_t& freq);
 
         // I2Cで受信
         // input_data_bytes : 何バイト(文字)読み込むか (省略した場合はinput_dataの長さだけ読み取る)

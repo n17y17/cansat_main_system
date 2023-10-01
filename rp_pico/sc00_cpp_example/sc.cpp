@@ -416,10 +416,10 @@ namespace sc
 
     // I2Cのセットアップ  I2C0とI2C1を使う際にそれぞれ一回だけ呼び出す
     // i2c_id : I2C0かi2c1か
-    // scl_pin : I2CのSCLのピン (ピン番号のみ指定したもの)
     // sda_pin : I2CのSDAのピン (ピン番号のみ指定したもの)
+    // scl_pin : I2CのSCLのピン (ピン番号のみ指定したもの)
     // freq : I2Cの転送速度
-    I2C::I2C(bool i2c_id, Pin scl_pin, Pin sda_pin, const uint32_t& freq):
+    I2C::I2C(bool i2c_id, Pin sda_pin, Pin scl_pin, const uint32_t& freq):
         _i2c_id(i2c_id)
     {
         if (_i2c_id)
@@ -433,10 +433,10 @@ namespace sc
             AlreadyUseI2C0 = true;
         }
 
-        gpio_set_function(scl_pin.gpio(), GPIO_FUNC_I2C);  // GPIOピンの有効化
-        gpio_pull_up(scl_pin.gpio());
         gpio_set_function(sda_pin.gpio(), GPIO_FUNC_I2C);  // GPIOピンの有効化
         gpio_pull_up(sda_pin.gpio());
+        gpio_set_function(scl_pin.gpio(), GPIO_FUNC_I2C);  // GPIOピンの有効化
+        gpio_pull_up(scl_pin.gpio());
         
         sleep_ms(10);  // 要検証
     }
