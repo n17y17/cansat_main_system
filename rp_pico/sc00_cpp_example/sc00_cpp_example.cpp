@@ -6,7 +6,7 @@ void setup()
     {
         stdio_init_all();  // pico-sdkの初期化
 
-        bme.init(&i2c, 0x52);  // BMEを初期化
+        bme.init(&i2c, 0x76);  // BMEを初期化
 
         bme.measure();  // BMEで1回測定
         sc::Altitude0(bme.pressure(), bme.temperature(), 0.0);  // 標高を計算するための基準点の気圧，気温を設定

@@ -6,7 +6,7 @@
 #include "sc.hpp"
 #include "bme280.hpp"
 
-sc::I2C i2c(0, sc::Pin(1), sc::Pin(2), 9600);  // I2Cのオブジェクト
+sc::I2C i2c(0, sc::Pin(5), sc::Pin(4), 9600);  // I2Cのオブジェクト
 sc::BME280 bme;  // BME280のオブジェクト
 
 sc::Temperature temperature;  // 測定した気温
