@@ -1,5 +1,5 @@
-#ifndef SC_PROJECT_RP_PICO_PICO_SDK_SC00_EXAMPLE_HPP_
-#define SC_PROJECT_RP_PICO_PICO_SDK_SC00_EXAMPLE_HPP_
+#ifndef SC_PROJECT_RP_PICO_PICO_SDK_CPP_EXAMPLE_CPP_EXAMPLE_HPP_
+#define SC_PROJECT_RP_PICO_PICO_SDK_CPP_EXAMPLE_CPP_EXAMPLE_HPP_
 
 #include <string>
 
@@ -36,4 +36,4 @@ void sc::save_log(const std::string &log) noexcept
     printf(log.c_str());
 }
 
-#endif  // SC_PROJECT_RP_PICO_PICO_SDK_SC00_EXAMPLE_HPP_
+#endif  // SC_PROJECT_RP_PICO_PICO_SDK_CPP_EXAMPLE_CPP_EXAMPLE_HPP_

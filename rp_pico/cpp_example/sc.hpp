@@ -1,5 +1,5 @@
-#ifndef SC_PROJECT_RP_PICO_PICO_SDK_SC_HPP_
-#define SC_PROJECT_RP_PICO_PICO_SDK_SC_HPP_
+#ifndef SC_PROJECT_RP_PICO_PICO_SDK_CPP_EXAMPLE_SC_HPP_
+#define SC_PROJECT_RP_PICO_PICO_SDK_CPP_EXAMPLE_SC_HPP_
 
 #define _USE_MATH_DEFINES  // 円周率などの定数を使用する  math.hを読み込む前に定義する必要がある (math.hはcmathやiostreamに含まれる)
 #include <cfloat>
@@ -774,4 +774,4 @@ namespace sc
     };
 }
 
-#endif  // SC_PROJECT_RP_PICO_PICO_SDK_SC_HPP_
+#endif  // SC_PROJECT_RP_PICO_PICO_SDK_CPP_EXAMPLE_SC_HPP_

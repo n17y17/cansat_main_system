@@ -1,4 +1,4 @@
-#include "sc00_cpp_example.hpp"
+#include "cpp_example.hpp"
 
 void setup()
 {
