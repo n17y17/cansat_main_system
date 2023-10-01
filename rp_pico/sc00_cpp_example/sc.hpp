@@ -242,10 +242,16 @@ namespace sc
     // value : エラー値であるを確かめる値
     inline bool is_error(Measurement value) {return is_error({value});}
 
-    // 複数回，関数を実行して平均を計算
-    template <typename T> T average(T(*func)())
+    // 複数回 関数を実行して戻り値の平均を計算
+    // func : 引数を持たない関数オブジェクト (戻り値の型は足し算と割り算ができる必要がある．void型だとエラー)
+    // count : 繰り返す回数
+    // メンバ関数などの平均を求める際はfuncの部分を次のようにしてください
+    // [&オブジェクト名]{return オブジェクト名.メンバ関数名();}
+    template<typename Func> double average(Func func, unsigned count = 10)
     {
-        // 未実装
+        double sum = 0;
+        for (unsigned i = 0; i < count; ++i) sum = sum + func();
+        return sum / static_cast<double>(count);
     }
 
     // XYZの3つの値から大きさを計算
