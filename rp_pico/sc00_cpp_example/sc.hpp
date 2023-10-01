@@ -250,7 +250,7 @@ namespace sc
     template<typename Func> double average(Func func, unsigned count = 10)
     {
         double sum = 0;
-        for (unsigned i = 0; i < count; ++i) sum = sum + func();
+        for (unsigned i = 0; i < count; ++i) sum = func() + sum;
         return sum / static_cast<double>(count);
     }
 
