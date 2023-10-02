@@ -415,7 +415,10 @@ namespace sc
     // scl_pin : I2CのSCLのピン (ピン番号のみ指定したもの)
     // freq : I2Cの転送速度
     I2C::I2C(bool i2c_id, Pin sda_pin, Pin scl_pin, const uint32_t& freq):
-        _i2c_id(i2c_id)
+        _i2c_id(i2c_id),
+        _sda_pin(sda_pin),
+        _scl_pin(scl_pin),
+        _freq(freq)
     {
         if (_i2c_id)
         {
@@ -424,7 +427,7 @@ namespace sc
                 save_error(__FILE__, __LINE__, "I2C1 cannot be initialized twice");  // I2C1を二回初期化することはできません
     return;
             }
-            i2c_init(i2c1, freq);  // I2Cの初期化
+            i2c_init(i2c1, _freq);  // I2Cの初期化
             AlreadyUseI2C1 = true;
         } else {
             if (AlreadyUseI2C1)
@@ -432,14 +435,14 @@ namespace sc
                 save_error(__FILE__, __LINE__, "I2C0 cannot be initialized twice");  // I2C0を二回初期化することはできません
     return;
             }
-            i2c_init(i2c0, freq);  // I2Cの初期化
+            i2c_init(i2c0, _freq);  // I2Cの初期化
             AlreadyUseI2C0 = true;
         }
 
-        gpio_set_function(sda_pin.gpio(), GPIO_FUNC_I2C);  // GPIOピンの有効化
-        gpio_pull_up(sda_pin.gpio());
-        gpio_set_function(scl_pin.gpio(), GPIO_FUNC_I2C);  // GPIOピンの有効化
-        gpio_pull_up(scl_pin.gpio());
+        gpio_set_function(_sda_pin.gpio(), GPIO_FUNC_I2C);  // GPIOピンの有効化
+        gpio_pull_up(_sda_pin.gpio());
+        gpio_set_function(_scl_pin.gpio(), GPIO_FUNC_I2C);  // GPIOピンの有効化
+        gpio_pull_up(_scl_pin.gpio());
         
         sleep_ms(10);  // 要検証
     }
@@ -489,7 +492,12 @@ namespace sc
     // mosi_pin : SPIのMOSI(TX)ピン
     // freq : SPIの転送速度
     SPI::SPI(bool spi_id, Pin miso_pin, std::initializer_list<Pin> cs_pins, Pin sck_pin, Pin mosi_pin, uint32_t freq):
-        _spi_id(spi_id)
+        _spi_id(spi_id),
+        _miso_pin(miso_pin),
+        _cs_pins(cs_pins),
+        _sck_pin(sck_pin),
+        _mosi_pin(mosi_pin),
+        _freq(freq)
     {
         if (_spi_id)
         {
@@ -498,7 +506,7 @@ namespace sc
                 save_error(__FILE__, __LINE__, "SPI1 cannot be initialized twice");  // SPI1を二回初期化することはできません
     return;
             }
-            spi_init(spi1, freq);  // SPIの初期化
+            spi_init(spi1, _freq);  // SPIの初期化
             AlreadyUseSPI1 = true;
         } else {
             if (AlreadyUseSPI1)
@@ -506,21 +514,21 @@ namespace sc
                 save_error(__FILE__, __LINE__, "SPI0 cannot be initialized twice");  // SPI0を二回初期化することはできません
     return;
             }
-            spi_init(spi0, freq);  // SPIの初期化
+            spi_init(spi0, _freq);  // SPIの初期化
             AlreadyUseSPI0 = true;
         }
 
-        gpio_set_function(miso_pin.gpio(), GPIO_FUNC_SPI);
+        gpio_set_function(_miso_pin.gpio(), GPIO_FUNC_SPI);
 
-        for (Pin cs_pin : cs_pins)
+        for (Pin cs_pin : _cs_pins)
         {
             gpio_init(cs_pin.gpio());
             gpio_set_dir(cs_pin.gpio(), GPIO_OUT);
             gpio_put(cs_pin.gpio(), 1);
         }
-        
-        gpio_set_function(sck_pin.gpio(), GPIO_FUNC_SPI);
-        gpio_set_function(mosi_pin.gpio(), GPIO_FUNC_SPI);
+
+        gpio_set_function(_sck_pin.gpio(), GPIO_FUNC_SPI);
+        gpio_set_function(_mosi_pin.gpio(), GPIO_FUNC_SPI);
     }
 
     // SPIで受信
@@ -571,7 +579,10 @@ namespace sc
     // rx_gpio : UARTのRXピン
     // freq : UARTの転送速度
     UART::UART(bool uart_id, Pin tx_pin, Pin rx_pin, uint32_t freq):
-        _uart_id(uart_id)
+        _uart_id(uart_id),
+        _tx_pin(tx_pin),
+        _rx_pin(rx_pin),
+        _freq(freq)
     {
         if (_uart_id)
         {
@@ -580,7 +591,7 @@ namespace sc
                 save_error(__FILE__, __LINE__, "UART1 cannot be initialized twice");  // UART1を二回初期化することはできません
     return;
             }
-            uart_init(uart1, freq);  // UARTの初期化
+            uart_init(uart1, _freq);  // UARTの初期化
             AlreadyUseUART1 = true;
         } else {
             if (AlreadyUseUART1)
@@ -588,12 +599,12 @@ namespace sc
                 save_error(__FILE__, __LINE__, "UART0 cannot be initialized twice");  // UART0を二回初期化することはできません
     return;
             }
-            uart_init(uart0, freq);  // UARTの初期化
+            uart_init(uart0, _freq);  // UARTの初期化
             AlreadyUseUART0 = true;
         }
 
-        gpio_set_function(tx_pin.gpio(), GPIO_FUNC_UART);
-        gpio_set_function(rx_pin.gpio(), GPIO_FUNC_UART);
+        gpio_set_function(_tx_pin.gpio(), GPIO_FUNC_UART);
+        gpio_set_function(_rx_pin.gpio(), GPIO_FUNC_UART);
     }
 
     // UARTで受信

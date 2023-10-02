@@ -522,6 +522,9 @@ namespace sc
         static bool AlreadyUseI2C0;
         static bool AlreadyUseI2C1;
         bool _i2c_id;
+        Pin _sda_pin;
+        Pin _scl_pin;
+        uint32_t _freq;
     };
 
     // SPI通信を行います
@@ -535,7 +538,7 @@ namespace sc
         // sck_pin : SPIのSCKピン
         // mosi_pin : SPIのMOSI(TX)ピン
         // freq : SPIの転送速度
-        SPI(bool spi_id, Pin miso_pin, std::initializer_list<Pin> cs_pins, Pin sck_pin, Pin mosi_pin, uint32_t freq);
+        SPI(bool spi_id, Pin miso_pin, std::initializer_list<Pin> cs_pins, Pin sck_pin, Pin mosi_pin, const uint32_t& freq);
 
         // SPIで送信しながら受信
         // input_data_bytes : 何バイト(文字)読み込むか (省略した場合はinput_dataの長さだけ読み取る)
@@ -588,6 +591,11 @@ namespace sc
         static bool AlreadyUseSPI0;
         static bool AlreadyUseSPI1;
         bool _spi_id;
+        Pin _miso_pin;
+        std::initializer_list<Pin> _cs_pins;
+        Pin _sck_pin;
+        Pin _mosi_pin;
+        uint32_t _freq
     };
 
     // UART通信を行います
@@ -599,7 +607,7 @@ namespace sc
         // tx_gpio : UARTのTXピン
         // rx_gpio : UARTのRXピン
         // freq : UARTの転送速度
-        UART(bool uart_id, Pin tx_gin, Pin rx_pin, uint32_t freq);
+        UART(bool uart_id, Pin tx_pin, Pin rx_pin, const uint32_t& freq);
 
         // UARTで受信
         // input_data_bytes : 何バイト(文字)読み込むか (省略した場合はinput_dataの長さだけ読み取る)
@@ -625,6 +633,9 @@ namespace sc
         static bool AlreadyUseUART0;
         static bool AlreadyUseUART1;
         bool _uart_id;
+        Pin _tx_pin;
+        Pin _rx_pin;
+        uint32_t _freq;
     };
 
     // PWM(パルス幅変調)を行います
