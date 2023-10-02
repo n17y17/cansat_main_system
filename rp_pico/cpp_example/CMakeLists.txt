@@ -29,7 +29,7 @@ pico_sdk_init()
 # add_subdirectory(sc)
 
 # ビルドを実行するファイルを追加
-add_executable(SC00 sc00_cpp_example.cpp sc.cpp bme280.cpp)
+add_executable(SC00 cpp_example.cpp sc.cpp bme280.cpp)
 
 # pico_stdlib（ライブラリ）の読み込み
 target_link_libraries(SC00 pico_stdlib hardware_gpio hardware_i2c hardware_spi hardware_uart hardware_pwm)

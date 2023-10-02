@@ -488,7 +488,7 @@ namespace sc
     // sck_pin : SPIのSCKピン
     // mosi_pin : SPIのMOSI(TX)ピン
     // freq : SPIの転送速度
-    SPI::SPI(bool spi_id, Pin miso_pin, std::initializer_list<Pin> cs_pins, Pin sck_pin, Pin mosi_pin, uint32_t freq):
+    SPI::SPI(bool spi_id, Pin miso_pin, std::initializer_list<Pin> cs_pins, Pin sck_pin, Pin mosi_pin, const uint32_t& freq):
         _spi_id(spi_id),
         _miso_pin(miso_pin),
         _cs_pins(cs_pins),
@@ -567,7 +567,7 @@ namespace sc
     // tx_gpio : UARTのTXピン
     // rx_gpio : UARTのRXピン
     // freq : UARTの転送速度
-    UART::UART(bool uart_id, Pin tx_pin, Pin rx_pin, uint32_t freq):
+    UART::UART(bool uart_id, Pin tx_pin, Pin rx_pin, const uint32_t& freq):
         _uart_id(uart_id),
         _tx_pin(tx_pin),
         _rx_pin(rx_pin),

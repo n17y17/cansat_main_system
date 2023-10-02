@@ -585,7 +585,7 @@ namespace sc
         std::initializer_list<Pin> _cs_pins;
         Pin _sck_pin;
         Pin _mosi_pin;
-        uint32_t _freq
+        uint32_t _freq;
     };
 
     // UART通信を行います
