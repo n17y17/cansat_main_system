@@ -22,8 +22,8 @@ namespace sc
 
         // BME280のセットアップ (SPI)
         // spi : SPI型のオブジェクト (一時オブジェクト不可)
-        // cs_gpio : CSピンのGPIO番号
-        void init(SPI* spi, uint8_t cs_gpio) {init(cs_gpio, spi);}
+        // cs_gpio : CSピン
+        void init(SPI* spi, Pin cs_pin) {init(cs_pin.gpio(), spi);}
 
         // センサが正常に接続されていることを確認
         // 戻り値 : 正常:true, 異常:false

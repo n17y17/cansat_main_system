@@ -528,23 +528,28 @@ namespace sc
         // SPIで送信しながら受信
         // input_data_bytes : 何バイト(文字)読み込むか (省略した場合はinput_dataの長さだけ読み取る)
         // input_data : 受信したデータを保存するための配列
-        // cs_gpio : 通信先のデバイスに繋がるCSピンのGPIO番号
+        // cs_pin : 通信先のデバイスに繋がるCSピン
         // output_data : データを受信している間に送信するデータ(1バイト)  データを1バイト受信するごとに1回送信する
         void read(std::size_t input_data_bytes, uint8_t *input_data, uint8_t cs_gpio, uint8_t output_data) const;
+        void read(std::size_t input_data_bytes, uint8_t *input_data, Pin cs_pin, uint8_t output_data) const {read(input_data_bytes, input_data, cs_pin.gpio(), output_data);}
 
         // SPIで受信
         // input_data_bytes : 何バイト(文字)読み込むか (省略した場合はinput_dataの長さだけ読み取る)
         // input_data : 受信したデータを保存するための配列
-        // cs_gpio : 通信先のデバイスに繋がるCSピンのGPIO番号
-        void read(std::size_t input_data_bytes, uint8_t *input_data, uint8_t cs_gpio) const {read(input_data_bytes, input_data, cs_gpio, 0);}
+        // cs_pin : 通信先のデバイスに繋がるCSピン
+        void read(std::size_t input_data_bytes, uint8_t *input_data, uint8_t cs_gpio) const {read(input_data_bytes, input_data, cs_gpio, 0U);}
+        void read(std::size_t input_data_bytes, uint8_t *input_data, Pin cs_pin) const {read(input_data_bytes, input_data, cs_pin.gpio());}
         template<typename T, std::size_t Size> void read(T (&input_data)[Size], uint8_t cs_gpio) const {read(Size, (uint8_t*)input_data, cs_gpio);}
+        template<typename T, std::size_t Size> void read(T (&input_data)[Size], Pin cs_pin) const {read(Size, (uint8_t*)input_data, cs_pin.gpio());}
 
         // SPIで送信
         // output_data_bytes : 何バイト(文字)書き込むか (省略した場合はoutput_dataの長さだけ書き込む)
         // output_data : 送信するデータの配列
-        // cs_gpio : 通信先のデバイスに繋がるCSピンのGPIO番号
+        // cs_pin : 通信先のデバイスに繋がるCSピン
         void write(std::size_t output_data_bytes, uint8_t *output_data, uint8_t cs_gpio) const;
+        void write(std::size_t output_data_bytes, uint8_t *output_data, Pin cs_pin) const {write(output_data_bytes, output_data, cs_pin.gpio());}
         template<typename T, std::size_t Size> void write(T (&output_data)[Size], uint8_t cs_gpio) const {write(Size, (uint8_t*)output_data, cs_gpio);}
+        template<typename T, std::size_t Size> void write(T (&output_data)[Size], Pin cs_pin) const {write(Size, (uint8_t*)output_data, cs_pin.gpio());}
 
         // メモリから読み込み
         // memory_addr : 相手のデバイスの何番地のメモリーからデータを読み込むか
