@@ -530,12 +530,12 @@ namespace sc
     public:
         // SPIのセットアップ  SPI0とSPI1を使う際にそれぞれ一回だけ呼び出す
         // spi_id : SPI0かSPI1か
-        // sck_pin : SPIのSCKピン
-        // mosi_pin : SPIのMOSI(TX)ピン
         // miso_pin : SPIのMISO(RX)ピン
         // cs_pins : SPIのCS(SS)ピン 使用するものすべて (波かっこ{}の中にカンマで区切って書く)
+        // sck_pin : SPIのSCKピン
+        // mosi_pin : SPIのMOSI(TX)ピン
         // freq : SPIの転送速度
-        SPI(bool spi_id, Pin sck_pin, Pin mosi_pin, Pin miso_pin, std::initializer_list<Pin> cs_pins, uint32_t freq);
+        SPI(bool spi_id, Pin miso_pin, std::initializer_list<Pin> cs_pins, Pin sck_pin, Pin mosi_pin, uint32_t freq);
 
         // SPIで送信しながら受信
         // input_data_bytes : 何バイト(文字)読み込むか (省略した場合はinput_dataの長さだけ読み取る)
